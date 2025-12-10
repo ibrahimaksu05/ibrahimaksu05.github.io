@@ -215,5 +215,72 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Giriş</title>
+<style>
+  body{
+    margin:0;
+    font-family:Arial, sans-serif;
+  }
+
+  /* Şifre ekranı */
+  #login{
+    position:fixed;
+    top:0; left:0; right:0; bottom:0;
+    background:#000;           /* Tam siyah arka plan */
+    color:#fff;
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* Asıl site gizli başlasın */
+  #site{
+    display:none;
+    text-align:center;
+    padding:20px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Şifre ekranı -->
+<div id="login">
+  <h2>🔐 Giriş</h2>
+  <input type="password" id="sifre" placeholder="Şifre">
+  <button onclick="kontrol()">Giriş Yap</button>
+  <p id="uyari" style="color:red;"></p>
+</div>
+
+<!-- Gerçek site -->
+<div id="site">
+  <h1>Hoş geldin</h1>
+  <p>Artık içerik burada.</p>
+  <img src="test.jpg" width="300">
+</div>
+
+<script>
+  const DOGRU_SIFRE = "sita0503";
+
+  function kontrol(){
+    let girilen = document.getElementById("sifre").value;
+
+    if(girilen === DOGRU_SIFRE){
+      document.getElementById("login").style.display = "none";
+      document.getElementById("site").style.display = "block";
+    }else{
+      document.getElementById("uyari").innerText = "Yanlış şifre!";
+    }
+  }
+</script>
+
+</body>
+</html>
+
 
 
