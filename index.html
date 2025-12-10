@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Benim ilk sitem</title>
+</head>
+<body>
+  <h1>ibrahim aksu ilk htmll sitesine hoşgeldiniz</h1>
+  <p>bu benim ilk HTLM sayfam</p>
+</body>
+</html>
+
+  <h2>seni seviyorum şeker küpümm, ay parçam</h2>
+
+<img src="test.jpg" width="300">
+
+</body>
+</html>
+ 
+<body>
+
+<audio controls>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+</body>
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Kaçan Kutu Oyunu</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f0f0f0;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    #gameArea {
+        width: 100%;
+        height: 400px;
+        background: #fff;
+        margin-top: 20px;
+        position: relative;
+        border: 2px solid #333;
+        overflow: hidden;
+    }
+    #box {
+        width: 60px;
+        height: 60px;
+        background: #e74c3c;
+        position: absolute;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    #startBtn {
+        padding: 10px 20px;
+        background: #2ecc71;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<h2>🏃 Kaçan Kutu Oyunu</h2>
+<p>20 saniyede mümkün olduğunca çok tıkla!</p>
+
+<button id="startBtn">Oyunu Başlat</button>
+
+<h3>Skor: <span id="score">0</span></h3>
+<h3>Süre: <span id="time">20</span></h3>
+
+<div id="gameArea">
+    <div id="box"></div>
+</div>
+
+<script>
+    const box = document.getElementById("box");
+    const gameArea = document.getElementById("gameArea");
+    const scoreText = document.getElementById("score");
+    const timeText = document.getElementById("time");
+    const startBtn = document.getElementById("startBtn");
+
+    let score = 0;
+    let timeLeft = 20;
+    let boxMoveInterval;
+    let timer;
+
+    startBtn.onclick = () => {
+        score = 0;
+        timeLeft = 20;
+        scoreText.textContent = score;
+        timeText.textContent = timeLeft;
+        startBtn.disabled = true;
+
+        // Kutunun hareket etmesi
+        boxMoveInterval = setInterval(moveBox, 700);
+
+        // Geri sayım
+        timer = setInterval(() => {
+            timeLeft--;
+            timeText.textContent = timeLeft;
+            if (timeLeft <= 0) endGame();
+        }, 1000);
+    };
+
+    function moveBox() {
+        const maxX = gameArea.clientWidth - 60;
+        const maxY = gameArea.clientHeight - 60;
+
+        box.style.left = Math.random() * maxX + "px";
+        box.style.top = Math.random() * maxY + "px";
+    }
+
+    box.onclick = () => {
+        score++;
+        scoreText.textContent = score;
+    };
+
+    function endGame() {
+        clearInterval(boxMoveInterval);
+        clearInterval(timer);
+        alert("Oyun Bitti! Skorun: " + score);
+        startBtn.disabled = false;
+    }
+</script>
+
+</body>
+</html>
