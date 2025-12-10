@@ -133,3 +133,28 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Şifre Koruması</title>
+<script>
+function giris() {
+    var sifre = document.getElementById("sifre").value;
+    if (sifre === "0503sita") {  
+        window.location.href = "anasayfa.html"; 
+    } else {
+        alert("Yanlış şifre!");
+    }
+}
+</script>
+</head>
+<body>
+
+<h2>Giriş</h2>
+<input type="password" id="sifre" placeholder="Şifreyi girin">
+<button onclick="giris()">Gönder</button>
+
+</body>
+</html>
+
