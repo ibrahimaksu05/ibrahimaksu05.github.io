@@ -134,31 +134,86 @@
 </body>
 </html>
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>Şifre Koruması</title>
-<script>
-function giris() {
-    var sifre = document.getElementById("sifre").value;
-    if (sifre === "0503sita") {
-        window.location.href = "anasayfa.html"; 
-    } else {
-        alert("Yanlış şifre!");
+  <meta charset="utf-8">
+  <title>Şifreli Site - Test</title>
+  <style>
+    body{font-family: Arial; margin:0; padding:0;}
+    /* overlay (giriş ekranı) */
+    #loginOverlay{
+      position:fixed;
+      top:0; left:0; right:0; bottom:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.8);
+      z-index:1000;
+      color:#fff;
+      flex-direction:column;
     }
-}
-</script>
+    #loginOverlay input{padding:10px; font-size:16px; margin-top:8px;}
+    #loginOverlay button{padding:10px 16px; margin-top:8px; font-size:16px;}
+    /* site içeriği başlangıçta gizli */
+    #site { display:none; padding:20px; text-align:center; }
+  </style>
 </head>
 <body>
 
-<h2>Giriş</h2>
-<input type="password" id="sifre" placeholder="Şifreyi girin">
-<button onclick="giris()">Gönder</button>
+  <!-- LOGIN OVERLAY -->
+  <div id="loginOverlay">
+    <h2>🔐 Site Girişi</h2>
+    <input id="pw" type="password" placeholder="Şifreyi gir">
+    <button id="btn">Giriş</button>
+    <p id="msg" style="color: #ff6666; margin-top:8px;"></p>
+  </div>
+
+  <!-- GERÇEK SITE İÇERİĞİ (resim, müzik vs burada olacak) -->
+  <div id="site">
+    <h1>Hoş geldin</h1>
+    <p>Bu kısım şifre doğru girilince görünür.</p>
+
+    <!-- örnek resim -->
+    <img src="test.jpg" alt="test" width="300">
+
+    <!-- örnek müzik (isteğe bağlı) -->
+    <audio controls>
+      <source src="muzik.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+<script>
+  // buraya kısa şifre: değiştir -> "1234" yerine istediğin şifre
+  const DOGRU_SIFRE = "sita0305";
+
+  const overlay = document.getElementById("loginOverlay");
+  const site = document.getElementById("site");
+  const btn = document.getElementById("btn");
+  const pw = document.getElementById("pw");
+  const msg = document.getElementById("msg");
+
+  function girisYap() {
+    if (pw.value === DOGRU_SIFRE) {
+      // şifre doğru: overlay gizle, site göster
+      overlay.style.display = "none";
+      site.style.display = "block";
+    } else {
+      msg.innerText = "Yanlış şifre!";
+    }
+  }
+
+  btn.addEventListener("click", girisYap);
+  pw.addEventListener("keydown", function(e){
+    if(e.key === "Enter") girisYap();
+  });
+</script>
 
 </body>
 </html>
 
+
 </body>
 </html>
+
 
 
